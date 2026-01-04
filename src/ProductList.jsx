@@ -8,11 +8,12 @@ function ProductList({ onHomeClick }) {
     
     const dispatch = useDispatch();
     const cartItems = useSelector(state => state.cart.items);
+    const addedToCart = useSelector(state => state.cart.addedToCart);
     const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
     
     const [showCart, setShowCart] = useState(false);
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
-    const [addedToCart, setAddedToCart] = useState([]);
+    
 
     const plantsArray = [
         {
@@ -262,9 +263,6 @@ function ProductList({ onHomeClick }) {
     const handleAddToCart = (product) => {
         console.log('Adding to cart:', product);
         dispatch(addItem(product));
-        setAddedToCart((prevState) => ({
-            ...prevState, [product.name]: true,
-        }));
     };
 
     const handleContinueShopping = (e) => {
